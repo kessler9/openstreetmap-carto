@@ -40,4 +40,4 @@ services:
       - PG_MAINTENANCE_WORK_MEM
       - OSM2PGSQL_CACHE
       - OSM2PGSQL_NUMPROC
-      - OSM2PGSQL_DATAFILE
+      - OSM2PGSQL_DATAFILE=north-america-latest.osm.pbf

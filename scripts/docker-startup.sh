@@ -52,7 +52,7 @@ EOF
   $OSM2PGSQL_DATAFILE
 
   # Downloading needed shapefiles
-  scripts/get-external-data.py
+  scripts/get-external-data.py || while true; do sleep 5 && echo "sleeping"; done
   ;;
 
 kosmtik)

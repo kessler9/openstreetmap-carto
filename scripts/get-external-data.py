@@ -104,7 +104,7 @@ class Table:
         finally:
             self._conn.autocommit = old_autocommit
 
-    def replace(self, new_last_modified):
+    def replace(self, new_last_modified=None):
         with self._conn.cursor() as cur:
             cur.execute('''BEGIN;''')
             cur.execute(('''DROP TABLE IF EXISTS "{schema}"."{name}";'''
@@ -197,61 +197,48 @@ def main():
                                    config["settings"]["metadata_table"])
                 this_table.clean_temp()
 
-                if not opts.force:
-                    headers = {'If-Modified-Since': this_table.last_modified()}
-                else:
-                    headers = {}
+                if "archive" in source and source["archive"]["format"] == "zip":
+                    zip = zipfile.ZipFile(open(source["filename"], 'rb'))
+                    for member in source["archive"]["files"]:
+                        zip.extract(member, workingdir)
 
-                download = s.get(source["url"], headers=headers)
-                download.raise_for_status()
+                ogrpg = "PG:dbname={}".format(database)
 
-                if (download.status_code == 200):
-                    if "Last-Modified" in download.headers:
-                        new_last_modified = download.headers["Last-Modified"]
-                    else:
-                        new_last_modified = None
-                    if "archive" in source and source["archive"]["format"] == "zip":
-                        zip = zipfile.ZipFile(io.BytesIO(download.content))
-                        for member in source["archive"]["files"]:
-                            zip.extract(member, workingdir)
+                if port is not None:
+                    ogrpg = ogrpg + " port={}".format(port)
+                if user is not None:
+                    ogrpg = ogrpg + " user={}".format(user)
+                if host is not None:
+                    ogrpg = ogrpg + " host={}".format(host)
 
-                    ogrpg = "PG:dbname={}".format(database)
+                ogrcommand = ["ogr2ogr",
+                                '-f', 'PostgreSQL',
+                                '-lco', 'GEOMETRY_NAME=way',
+                                '-lco', 'SPATIAL_INDEX=FALSE',
+                                '-lco', 'EXTRACT_SCHEMA_FROM_LAYER_NAME=YES',
+                                '-nln', "{}.{}".format(config["settings"]["temp_schema"], name)]
 
-                    if port is not None:
-                        ogrpg = ogrpg + " port={}".format(port)
-                    if user is not None:
-                        ogrpg = ogrpg + " user={}".format(user)
-                    if host is not None:
-                        ogrpg = ogrpg + " host={}".format(host)
+                if "ogropts" in source:
+                    ogrcommand += source["ogropts"]
 
-                    ogrcommand = ["ogr2ogr",
-                                  '-f', 'PostgreSQL',
-                                  '-lco', 'GEOMETRY_NAME=way',
-                                  '-lco', 'SPATIAL_INDEX=FALSE',
-                                  '-lco', 'EXTRACT_SCHEMA_FROM_LAYER_NAME=YES',
-                                  '-nln', "{}.{}".format(config["settings"]["temp_schema"], name)]
+                ogrcommand += [ogrpg, os.path.join(workingdir, source["file"])]
 
-                    if "ogropts" in source:
-                        ogrcommand += source["ogropts"]
+                logging.debug("running {}".format(subprocess.list2cmdline(ogrcommand)))
 
-                    ogrcommand += [ogrpg, os.path.join(workingdir, source["file"])]
+                # ogr2ogr can raise errors here, so they need to be caught
+                try:
+                    subprocess.check_output(ogrcommand, stderr=subprocess.PIPE, universal_newlines=True)
+                except subprocess.CalledProcessError as e:
+                    # Add more detail on stdout for the logs
+                    logging.critical("ogr2ogr returned {} with layer {}".format(e.returncode, name))
+                    logging.critical("Command line was {}".format(subprocess.list2cmdline(e.cmd)))
+                    logging.critical("Output was\n{}".format(e.output))
+                    raise RuntimeError("ogr2ogr error when loading table {}".format(name))
 
-                    logging.debug("running {}".format(subprocess.list2cmdline(ogrcommand)))
-
-                    # ogr2ogr can raise errors here, so they need to be caught
-                    try:
-                        subprocess.check_output(ogrcommand, stderr=subprocess.PIPE, universal_newlines=True)
-                    except subprocess.CalledProcessError as e:
-                        # Add more detail on stdout for the logs
-                        logging.critical("ogr2ogr returned {} with layer {}".format(e.returncode, name))
-                        logging.critical("Command line was {}".format(subprocess.list2cmdline(e.cmd)))
-                        logging.critical("Output was\n{}".format(e.output))
-                        raise RuntimeError("ogr2ogr error when loading table {}".format(name))
-
-                    this_table.index()
-                    this_table.replace(new_last_modified)
-                else:
-                    logging.info("Table {} did not require updating".format(name))
+                this_table.index()
+                this_table.replace()
+            else:
+                logging.info("Table {} did not require updating".format(name))
 
 
 if __name__ == '__main__':
