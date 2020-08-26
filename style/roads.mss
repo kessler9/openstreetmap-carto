@@ -6,7 +6,7 @@
 @living-street-fill: #ededed;
 @pedestrian-fill: #dddde8;
 @raceway-fill: pink;
-@road-fill: #ddd;
+@road-fill: lighten(#232831,10);
 @footway-fill: salmon;
 @footway-fill-noaccess: #bbbbbb;
 @steps-fill: @footway-fill;
@@ -24,7 +24,7 @@
 @access-marking: #eaeaea;
 @access-marking-living-street: #cccccc;
 
-@default-casing: white;
+@default-casing: #232831;
 @tertiary-casing: #8f8f8f;
 @residential-casing: #bbb;
 @road-casing: @residential-casing;
