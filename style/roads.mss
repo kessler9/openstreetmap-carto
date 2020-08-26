@@ -6,7 +6,7 @@
 @living-street-fill: #ededed;
 @pedestrian-fill: #dddde8;
 @raceway-fill: pink;
-@road-fill: lighten(#232831,10);
+@road-fill: #39404e;
 @footway-fill: salmon;
 @footway-fill-noaccess: #bbbbbb;
 @steps-fill: @footway-fill;
