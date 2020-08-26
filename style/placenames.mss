@@ -1,4 +1,4 @@
-@placenames: #222;
+@placenames: rgba(255,255,255, 0.9);
 @placenames-light: #777777;
 @country-labels: darken(@admin-boundaries-narrow, 10%);
 @state-labels: desaturate(@admin-boundaries-narrow, 5%);
