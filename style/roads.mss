@@ -1,6 +1,6 @@
 /* For the main linear features, such as roads and railways. */
 
-@tertiary-fill: lighten(@default-casing, 10%);
+@tertiary-fill: lighten(@default-casing, 15%);
 @residential-fill: @tertiary-fill;
 @service-fill: @residential-fill;
 @living-street-fill: @tertiary-fill;
