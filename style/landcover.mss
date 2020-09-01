@@ -1,12 +1,12 @@
 // --- Parks, woods, other green things ---
 
-@grass: darken(#cdebb0, 50%);        // Lch(90,32,128) also grassland, meadow, village_green, garden, allotments
-@scrub: darken(#c8d7ab, 50%);        // Lch(84,24,122)
-@forest: darken(#add19e, 50%);       // Lch(80,30,135)
-@forest-text: darken(#46673b, 50%);  // Lch(40,30,135)
-@park: darken(#c8facc, 50%);         // Lch(94,30,145)
-@allotments: darken(#c9e1bf, 50%);   // Lch(87,20,135)
-@orchard: darken(#aedfa3, 50%); // also vineyard, plant_nursery
+@grass: desaturate(darken(#cdebb0, 60%), 60%);        // Lch(90,32,128) also grassland, meadow, village_green, garden, allotments
+@scrub: desaturate(darken(#c8d7ab, 60%), 60%);        // Lch(84,24,122)
+@forest: desaturate(darken(#add19e, 60%), 60%);       // Lch(80,30,135)
+@forest-text: desaturate(darken(#46673b, 60%), 60%);  // Lch(40,30,135)
+@park: desaturate(darken(#c8facc, 60%), 60%);         // Lch(94,30,145)
+@allotments: desaturate(darken(#c9e1bf, 60%), 60%);   // Lch(87,20,135)
+@orchard: desaturate(darken(#aedfa3, 60%), 60%); // also vineyard, plant_nursery
 @hedge: @forest;       // Lch(80,30,135)
 
 // --- "Base" landuses ---

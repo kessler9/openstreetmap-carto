@@ -1,28 +1,28 @@
 /* For the main linear features, such as roads and railways. */
 
-@tertiary-fill: lighten(#232831, 10%);
-@residential-fill: lighten(#232831, 10%);
+@tertiary-fill: lighten(@default-casing, 10%);
+@residential-fill: @tertiary-fill;
 @service-fill: @residential-fill;
-@living-street-fill: lighten(#232831, 10%);
-@pedestrian-fill: lighten(#232831, 10%);
-@raceway-fill: lighten(#232831, 10%);
-@road-fill: lighten(#232831, 10%);
-@footway-fill: lighten(#232831, 10%);
-@footway-fill-noaccess: lighten(#232831, 10%);
+@living-street-fill: @tertiary-fill;
+@pedestrian-fill: @tertiary-fill;
+@raceway-fill: @tertiary-fill;
+@road-fill: @tertiary-fill;
+@footway-fill: @tertiary-fill;
+@footway-fill-noaccess: @tertiary-fill;
 @steps-fill: @footway-fill;
 @steps-fill-noaccess: #bbbbbb;
-@cycleway-fill: lighten(#232831, 10%);
-@cycleway-fill-noaccess: lighten(#232831, 10%);
-@bridleway-fill: lighten(#232831, 10%);
-@bridleway-fill-noaccess: lighten(#232831, 10%);
-@track-fill: lighten(#232831, 10%);
-@track-fill-noaccess: lighten(#232831, 10%);
-@aeroway-fill: lighten(#232831, 10%);
+@cycleway-fill: @tertiary-fill;
+@cycleway-fill-noaccess: @tertiary-fill;
+@bridleway-fill: @tertiary-fill;
+@bridleway-fill-noaccess: @tertiary-fill;
+@track-fill: @tertiary-fill;
+@track-fill-noaccess: @tertiary-fill;
+@aeroway-fill: @tertiary-fill;
 @runway-fill: @aeroway-fill;
 @taxiway-fill: @aeroway-fill;
 @helipad-fill: @aeroway-fill;
-@access-marking: lighten(#232831, 10%);
-@access-marking-living-street: lighten(#232831, 10%);
+@access-marking: @tertiary-fill;
+@access-marking-living-street: @tertiary-fill;
 
 @default-casing: #232831;
 @tertiary-casing: @tertiary-casing;
