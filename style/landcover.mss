@@ -1,6 +1,6 @@
 // --- Parks, woods, other green things ---
 
-@grass: #cdebb0;        // Lch(90,32,128) also grassland, meadow, village_green, garden, allotments
+@grass: darken(#cdebb0, 50%);        // Lch(90,32,128) also grassland, meadow, village_green, garden, allotments
 @scrub: #c8d7ab;        // Lch(84,24,122)
 @forest: #add19e;       // Lch(80,30,135)
 @forest-text: #46673b;  // Lch(40,30,135)
@@ -13,9 +13,9 @@
 
 @built-up-lowzoom: #d0d0d0;
 @built-up-z12: #dddddd;
-@residential: #e0dfdf;      // Lch(89,0,0)
-@residential-line: #b9b9b9; // Lch(75,0,0)
-@retail: #ffd6d1;           // Lch(89,16,30)
+@residential: @land-color;      // Lch(89,0,0)
+@residential-line: @land-color; // Lch(75,0,0)
+@retail: @land-color;           // Lch(89,16,30)
 @retail-line: #d99c95;      // Lch(70,25,30)
 @commercial: #f2dad9;       // Lch(89,8.5,25)
 @commercial-line: #d1b2b0;  // Lch(75,12,25)
@@ -53,7 +53,7 @@
 @sand: #f5e9c6;
 @societal_amenities: #ffffe5;   // Lch(99,13,109)
 @tourism: #660033;
-@quarry: #c5c3c3;
+@quarry: @land-color;
 @military: #f55;
 @beach: #fff1ba;
 @wastewater_plant: @industrial;

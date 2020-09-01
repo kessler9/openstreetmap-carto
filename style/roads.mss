@@ -1,12 +1,12 @@
 /* For the main linear features, such as roads and railways. */
 
 @tertiary-fill: #ffffff;
-@residential-fill: #ffffff;
+@residential-fill: lighten(#232831, 10%);
 @service-fill: @residential-fill;
 @living-street-fill: #ededed;
 @pedestrian-fill: #dddde8;
 @raceway-fill: pink;
-@road-fill: #39404e;
+@road-fill: lighten(#232831, 10%);
 @footway-fill: salmon;
 @footway-fill-noaccess: #bbbbbb;
 @steps-fill: @footway-fill;
