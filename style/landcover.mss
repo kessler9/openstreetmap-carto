@@ -39,23 +39,23 @@
 
 // --- Other ----
 
-@bare_ground: #eee5dc;
-@campsite: #def6c0; // also caravan_site, picnic_site
-@cemetery: #aacbaf; // also grave_yard
-@construction: #c7c7b4; // also brownfield
-@heath: #d6d99f;
+@bare_ground: @land-color;
+@campsite: @forest; // also caravan_site, picnic_site
+@cemetery: @forest; // also grave_yard
+@construction: #51534e; // also brownfield
+@heath: #51534e;
 @mud: rgba(203,177,154,0.3); // produces #e6dcd1 over @land
-@place_of_worship: #d0d0d0; // also landuse_religious
+@place_of_worship: #51534e; // also landuse_religious
 @place_of_worship_outline: darken(@place_of_worship, 30%);
 @leisure: lighten(@park, 5%);
 @power: darken(@industrial, 5%);
 @power-line: darken(@industrial-line, 5%);
-@sand: #f5e9c6;
-@societal_amenities: #ffffe5;   // Lch(99,13,109)
-@tourism: #660033;
+@sand: #434545;
+@societal_amenities: #51534e;   // Lch(99,13,109)
+@tourism: #51534e;
 @quarry: @land-color;
-@military: #f55;
-@beach: #fff1ba;
+@military: #51534e;
+@beach: @sand;
 @wastewater_plant: @industrial;
 @wastewater_plant-line: @industrial-line;
 @water_works: @industrial;
