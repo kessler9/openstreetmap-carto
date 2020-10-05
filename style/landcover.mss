@@ -63,10 +63,10 @@
 
 // --- Sports ---
 
-@pitch: darken(#aae0cb, 50%);           // Lch(85,22,168) also track
-@track: @pitch;
+@pitch: @leisure;           // Lch(85,22,168) also track
+@track: @leisure;
 @stadium: @leisure; // also sports_centre
-@golf_course: darken(#b5e3b5, 50%);
+@golf_course: @leisure;
 
 #landcover-low-zoom[zoom < 10],
 #landcover[zoom >= 10] {
