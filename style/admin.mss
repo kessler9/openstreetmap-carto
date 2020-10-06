@@ -316,9 +316,6 @@ Then all three layers are added to the rendering with comp-op: darken, so that t
   The SQL has `ORDER BY admin_level`, so the boundary with the lowest
   admin_level is rendered on top, and therefore the only visible boundary.
   */
-  ::firstline,
-  ::wideline,
-  ::narrowline { comp-op: darken; }
 
   [admin_level = '5'][zoom >= 8]::firstline {
     background/line-join: bevel;
